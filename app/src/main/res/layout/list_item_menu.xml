@@ -6,7 +6,7 @@
     <data>
         <variable
             name="pizza"
-            type="com.galia.dev.pizza.api.Pizza" />
+            type="com.galia.dev.pizza.api.models.Pizza" />
 
     </data>
 
