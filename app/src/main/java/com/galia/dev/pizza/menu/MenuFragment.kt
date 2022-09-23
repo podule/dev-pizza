@@ -23,6 +23,10 @@ class MenuFragment : Fragment() {
     ): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.menuList.adapter = MenuAdapter()
+
         return binding.root
     }
 
