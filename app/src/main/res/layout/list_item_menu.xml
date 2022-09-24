@@ -12,16 +12,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_normal">
+        android:layout_height="wrap_content" >
 
         <ImageView
             android:id="@+id/mars_image"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_normal"
             android:text="@{pizza.title}"
             tools:text="@string/tools_text_pizza_title"
             style="@style/TextAppearance.DevPizza.Title.Text"
@@ -56,6 +55,7 @@
             android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
+            android:text="@{pizza.description}"
             tools:text="@string/tools_text_pizza_desc"
             style="@style/TextAppearance.DevPizza.Subtitle.Text"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_small"
+            android:text="@{String.valueOf(pizza.price)}"
             tools:text="@string/tools_text_pizza_price"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/pizza_desc" />
