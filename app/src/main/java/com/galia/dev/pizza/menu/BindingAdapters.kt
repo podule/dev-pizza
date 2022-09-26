@@ -18,5 +18,6 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String) {
     view.load(imageUrl) {
         crossfade(true)
         placeholder(R.drawable.loading_animation)
+        error(R.drawable.ic_broken_image)
     }
 }
