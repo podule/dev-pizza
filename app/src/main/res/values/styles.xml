@@ -4,11 +4,17 @@
     <style name="TextAppearance.DevPizza.Title.Text" parent="TextAppearance.MaterialComponents.Headline5" >
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">19sp</item>
         <item name="android:letterSpacing">0.009375</item>
     </style>
 
     <style name="TextAppearance.DevPizza.Subtitle.Text" parent="TextAppearance.DevPizza.Title.Text" >
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#757373</item>
+    </style>
+
+    <style name="TextAppearance.DevPizza.Price.Text" parent="TextAppearance.DevPizza.Title.Text" >
+        <item name="android:textColor">#E41313</item>
+        <item name="android:textSize">19sp</item>
     </style>
 </resources>

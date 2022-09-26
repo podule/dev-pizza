@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/shrimps"
+            app:imageFromUrl="@{pizza.url}"
             tools:src="@drawable/shrimps" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -68,8 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="@{String.valueOf(pizza.price)}"
+            android:text="@{@string/tools_text_pizza_price(pizza.price)}"
             tools:text="@string/tools_text_pizza_price"
+            style="@style/TextAppearance.DevPizza.Price.Text"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/pizza_desc" />
 

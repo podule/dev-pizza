@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Dev-pizza</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="tools_text_pizza_title">Пепперони</string>
     <string name="tools_text_pizza_desc">Пицца с острыми колбасками на тонком тесте 30 см</string>
-    <string name="tools_text_pizza_price">560 руб.</string>
+    <string name="tools_text_pizza_price">%d ₽</string>
 </resources>

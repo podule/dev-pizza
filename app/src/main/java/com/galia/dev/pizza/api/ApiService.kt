@@ -12,7 +12,7 @@ interface ApiService {
     suspend fun getMenu(): MenuPizza
 
     companion object {
-        private const val BASE_URL = "https://29af7f1a-4f96-4ccb-9de2-b15ec07e0078.mock.pstmn.io/"
+        private const val BASE_URL = "http://10.0.2.2:8080/v1/pizza/"
 
         fun create(): ApiService {
             val moshi = Moshi.Builder()
