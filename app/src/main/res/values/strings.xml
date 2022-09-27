@@ -3,4 +3,6 @@
     <string name="tools_text_pizza_title">Пепперони</string>
     <string name="tools_text_pizza_desc">Пицца с острыми колбасками на тонком тесте 30 см</string>
     <string name="tools_text_pizza_price">%d ₽</string>
+    <string name="menu_menu">Меню</string>
+    <string name="menu_cart">Корзина</string>
 </resources>
