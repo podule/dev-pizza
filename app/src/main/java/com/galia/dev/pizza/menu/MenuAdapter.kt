@@ -2,13 +2,13 @@ package com.galia.dev.pizza.menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.galia.dev.pizza.api.models.Pizza
 import com.galia.dev.pizza.databinding.ListItemMenuBinding
 
-class MenuAdapter: ListAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCallback) {
+class MenuAdapter: PagingDataAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCallback) {
 
     class MenuItemHolder(private val binding: ListItemMenuBinding): ViewHolder(binding.root) {
         fun bind(pizza: Pizza) {
@@ -34,7 +34,9 @@ class MenuAdapter: ListAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCallback) 
 
     override fun onBindViewHolder(holder: MenuItemHolder, position: Int) {
         val pizza = getItem(position)
-        holder.bind(pizza)
+        pizza?.let {
+            holder.bind(pizza)
+        }
     }
 
 }
