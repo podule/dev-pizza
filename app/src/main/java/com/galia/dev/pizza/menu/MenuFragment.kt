@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.galia.dev.pizza.R
 import com.galia.dev.pizza.databinding.FragmentMenuBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -20,6 +22,7 @@ class MenuFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
     private val pagingAdapter = MenuAdapter()
+    private val discountAdapter = DiscountAdapter()
     private val viewModel: MenuViewModel by viewModels()
 
     override fun onCreateView(
@@ -30,7 +33,15 @@ class MenuFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.menuList.adapter = pagingAdapter
+
+        val menuDataAdapterModels = listOf(
+            MenuDataAdapterModel(resources.getString(R.string.menu_discount), discountAdapter, LinearLayoutManager.HORIZONTAL),
+            MenuDataAdapterModel(resources.getString(R.string.menu_menu), pagingAdapter, LinearLayoutManager.VERTICAL)
+        )
+        val adapter = ParentMenuAdapter(menuDataAdapterModels)
+        binding.menuList.layoutManager = LinearLayoutManager(requireContext())
+        binding.menuList.adapter = adapter
+
         bindMenuData()
 
         return binding.root
@@ -40,6 +51,12 @@ class MenuFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.menu.collectLatest { data ->
                 pagingAdapter.submitData(data)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.discounts.collectLatest { data ->
+                discountAdapter.submitList(data)
             }
         }
 
