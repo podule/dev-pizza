@@ -8,6 +8,7 @@ import com.galia.dev.pizza.api.models.Discount
 import com.galia.dev.pizza.api.models.Pizza
 import com.galia.dev.pizza.data.source.MenuPagingSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -23,6 +24,8 @@ class MenuRemoteRepository @Inject constructor(private val apiService: ApiServic
     override fun getDiscounts(): Flow<List<Discount>> {
         return flow {
             emit(apiService.getDiscounts())
+        }.catch { exception ->
+            throw exception
         }
     }
 }

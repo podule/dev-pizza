@@ -16,16 +16,16 @@ class MenuPagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Pizza> {
-        try {
+        return try {
             val page = params.key ?: PAGE_INIT
             val response = apiService.getPagingMenu(PAGE_SIZE_DEFAULT, page)
-            return LoadResult.Page(
+            LoadResult.Page(
                 data = response.menu,
                 prevKey = if (page == PAGE_INIT) null else page - 1,
                 nextKey = if (response.menu.isEmpty()) null else page + 1
             )
         } catch (ex: java.lang.Exception) {
-            return LoadResult.Error(ex)
+            LoadResult.Error(ex)
         }
     }
 

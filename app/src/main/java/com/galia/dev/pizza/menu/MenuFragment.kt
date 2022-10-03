@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.galia.dev.pizza.R
 import com.galia.dev.pizza.databinding.FragmentMenuBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -35,8 +36,16 @@ class MenuFragment : Fragment() {
         binding.viewModel = viewModel
 
         val menuDataAdapterModels = listOf(
-            MenuDataAdapterModel(resources.getString(R.string.menu_discount), discountAdapter, LinearLayoutManager.HORIZONTAL),
-            MenuDataAdapterModel(resources.getString(R.string.menu_menu), pagingAdapter, LinearLayoutManager.VERTICAL)
+            MenuDataAdapterModel(
+                resources.getString(R.string.menu_discount),
+                discountAdapter,
+                LinearLayoutManager.HORIZONTAL
+            ),
+            MenuDataAdapterModel(
+                resources.getString(R.string.menu_menu),
+                pagingAdapter,
+                LinearLayoutManager.VERTICAL
+            )
         )
         val adapter = ParentMenuAdapter(menuDataAdapterModels)
         binding.menuList.layoutManager = LinearLayoutManager(requireContext())
@@ -55,9 +64,12 @@ class MenuFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            viewModel.discounts.collectLatest { data ->
-                discountAdapter.submitList(data)
-            }
+            viewModel.discounts
+                .catch { exception ->
+                    showToastMessage("Ошибка загрузки данных: ${exception.message}")
+                }
+                .collectLatest { data -> discountAdapter.submitList(data) }
+
         }
 
         lifecycleScope.launch {
@@ -68,14 +80,18 @@ class MenuFragment : Fragment() {
                     ?: loadState.prepend as? LoadState.Error
                     ?: loadState.refresh as? LoadState.Error
                 errorState?.let {
-                    Toast.makeText(
-                        activity,
-                        "Ошибка загрузки данных: ${it.error}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    showToastMessage("Ошибка загрузки данных: ${it.error}")
                 }
             }
         }
+    }
+
+    private fun showToastMessage(message: String) {
+        Toast.makeText(
+            activity,
+            "Ошибка загрузки данных: $message",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onDestroyView() {
