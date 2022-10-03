@@ -16,10 +16,11 @@ interface ApiService {
     @GET("discounts")
     suspend fun getDiscounts(): List<Discount>
 
-    @GET("menu/{size}/{index}")
+    @GET("menu/{size}/{index}/{isSort}")
     suspend fun getPagingMenu(
         @Path("size") size: Int,
-        @Path("index") index: Int
+        @Path("index") index: Int,
+        @Path("isSort") isSort: Int = 0
     ): MenuPizza
 
     companion object {

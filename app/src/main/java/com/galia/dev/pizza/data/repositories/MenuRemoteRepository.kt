@@ -14,10 +14,10 @@ import javax.inject.Inject
 
 class MenuRemoteRepository @Inject constructor(private val apiService: ApiService): MenuRepository {
 
-    override fun getMenuResultStream(): Flow<PagingData<Pizza>> {
+    override fun getMenuResultStream(sortedFlag: Boolean): Flow<PagingData<Pizza>> {
         return Pager(
             config = PagingConfig(enablePlaceholders = false, pageSize = MenuPagingSource.PAGE_SIZE_DEFAULT),
-            pagingSourceFactory = { MenuPagingSource(apiService) }
+            pagingSourceFactory = { MenuPagingSource(apiService, sortedFlag) }
         ).flow
     }
 

@@ -6,6 +6,6 @@ import com.galia.dev.pizza.api.models.Discount
 import kotlinx.coroutines.flow.Flow
 
 interface MenuRepository {
-    fun getMenuResultStream(): Flow<PagingData<Pizza>>
+    fun getMenuResultStream(sortedFlag: Boolean): Flow<PagingData<Pizza>>
     fun getDiscounts(): Flow<List<Discount>>
 }
