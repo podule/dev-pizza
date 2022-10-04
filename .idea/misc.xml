@@ -11,8 +11,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/discount_concat_row.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pizza_dialog_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_pizza_dialog_dialog_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_discount.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/modal_sheet_pizza.xml" value="0.1" />
         <entry key="app/src/main/res/layout/parent_menu_recycler.xml" value="0.33" />
         <entry key="app/src/main/res/layout/test.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/menu/bottom_app_bar.xml" value="0.25" />

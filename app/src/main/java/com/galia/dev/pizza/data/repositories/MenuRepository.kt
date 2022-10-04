@@ -8,4 +8,5 @@ import kotlinx.coroutines.flow.Flow
 interface MenuRepository {
     fun getMenuResultStream(sortedFlag: Boolean): Flow<PagingData<Pizza>>
     fun getDiscounts(): Flow<List<Discount>>
+    fun getPizza(id: Int): Flow<Pizza>
 }

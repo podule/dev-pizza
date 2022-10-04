@@ -2,6 +2,7 @@ package com.galia.dev.pizza.api
 
 import com.galia.dev.pizza.api.models.MenuPizza
 import com.galia.dev.pizza.api.models.Discount
+import com.galia.dev.pizza.api.models.Pizza
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -10,9 +11,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("menu")
-    suspend fun getMenu(): MenuPizza
-
     @GET("discounts")
     suspend fun getDiscounts(): List<Discount>
 
@@ -22,6 +20,10 @@ interface ApiService {
         @Path("index") index: Int,
         @Path("isSort") isSort: Int = 0
     ): MenuPizza
+
+    @GET("{ids}")
+    suspend fun getPizza(@Path("id") size: Int): Pizza
+
 
     companion object {
         private const val BASE_URL = "http://10.0.2.2:8080/v1/pizza/"

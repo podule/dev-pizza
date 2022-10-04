@@ -2,6 +2,7 @@ package com.galia.dev.pizza.menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -13,7 +14,15 @@ class MenuAdapter: PagingDataAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCall
     class MenuItemHolder(private val binding: ListItemMenuBinding): ViewHolder(binding.root) {
         fun bind(pizza: Pizza) {
             binding.pizza = pizza
+            binding.menuItem.setOnClickListener {
+                navigateToPizza(pizza)
+            }
             binding.executePendingBindings()
+        }
+
+        private fun navigateToPizza(pizza: Pizza) {
+            val direction = MenuFragmentDirections.actionMenuFragmentToPizzaModalSheet(pizza.id.toInt())
+            binding.root.findNavController().navigate(direction)
         }
     }
 

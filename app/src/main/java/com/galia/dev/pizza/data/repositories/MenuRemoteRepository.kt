@@ -28,4 +28,12 @@ class MenuRemoteRepository @Inject constructor(private val apiService: ApiServic
             throw exception
         }
     }
+
+    override fun getPizza(id: Int): Flow<Pizza> {
+        return flow {
+            emit(apiService.getPizza(id))
+        }.catch { exception ->
+            throw exception
+        }
+    }
 }

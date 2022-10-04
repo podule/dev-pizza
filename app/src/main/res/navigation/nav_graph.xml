@@ -9,5 +9,17 @@
         android:id="@+id/menuFragment"
         android:name="com.galia.dev.pizza.menu.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_pizzaModalSheet"
+            app:destination="@id/pizzaModalSheet" />
+    </fragment>
+    <dialog
+        android:id="@+id/pizzaModalSheet"
+        android:name="com.galia.dev.pizza.menu.PizzaModalSheet"
+        android:label="PizzaModalSheet" >
+        <argument
+            android:name="pizzaId"
+            app:argType="integer" />
+    </dialog>
 </navigation>
