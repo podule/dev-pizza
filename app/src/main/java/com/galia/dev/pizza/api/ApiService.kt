@@ -21,8 +21,8 @@ interface ApiService {
         @Path("isSort") isSort: Int = 0
     ): MenuPizza
 
-    @GET("{ids}")
-    suspend fun getPizza(@Path("id") size: Int): Pizza
+    @GET("{id}")
+    suspend fun getPizza(@Path("id") id: Int): Pizza
 
 
     companion object {

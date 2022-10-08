@@ -26,7 +26,6 @@ class MenuViewModel @Inject constructor(private val repository: MenuRepository) 
         repository.getMenuResultStream(flag).cachedIn(viewModelScope)
     }
 
-
     fun toggleSorted() {
         val flag = isSorted.value
         isSorted.value = !flag

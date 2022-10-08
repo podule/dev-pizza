@@ -27,6 +27,6 @@ class PizzaViewModel @Inject constructor(
     }
 
     companion object {
-        private const val PIZZA_ID_SAVED_STATE_KEY = "pizzaId"
+        const val PIZZA_ID_SAVED_STATE_KEY = "pizzaId"
     }
 }
