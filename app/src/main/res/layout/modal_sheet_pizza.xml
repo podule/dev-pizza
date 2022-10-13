@@ -11,7 +11,7 @@
             type="com.galia.dev.pizza.api.models.Pizza" />
         <variable
             name="viewModel"
-            type="com.galia.dev.pizza.menu.PizzaViewModel" />
+            type="com.galia.dev.pizza.pizza.PizzaViewModel" />
     </data>
 
 
@@ -37,6 +37,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_normal"
                     android:layout_gravity="center">
 
                     <ImageView
@@ -67,6 +69,9 @@
                         android:layout_marginStart="@dimen/margin_normal"
                         android:layout_marginTop="@dimen/margin_normal"
                         android:text="@{pizza.title}"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/guideline2"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/tools_text_pizza_title" />

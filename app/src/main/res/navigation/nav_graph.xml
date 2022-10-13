@@ -16,7 +16,7 @@
     </fragment>
     <dialog
         android:id="@+id/pizzaModalSheet"
-        android:name="com.galia.dev.pizza.menu.PizzaModalSheet"
+        android:name="com.galia.dev.pizza.pizza.PizzaModalSheet"
         android:label="PizzaModalSheet" >
         <argument
             android:name="pizzaId"

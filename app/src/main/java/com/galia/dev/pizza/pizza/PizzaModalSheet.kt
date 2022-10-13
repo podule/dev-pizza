@@ -1,4 +1,4 @@
-package com.galia.dev.pizza.menu
+package com.galia.dev.pizza.pizza
 
 import android.os.Bundle
 import android.view.LayoutInflater

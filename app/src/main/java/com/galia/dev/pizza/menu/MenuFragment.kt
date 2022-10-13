@@ -9,6 +9,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.galia.dev.pizza.R
@@ -23,8 +24,8 @@ class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
-    private val pagingAdapter = MenuAdapter()
-    private val discountAdapter = DiscountAdapter()
+    private lateinit var pagingAdapter: MenuAdapter
+    private lateinit var discountAdapter: DiscountAdapter
     private val viewModel: MenuViewModel by viewModels()
     private lateinit var menuHost: MenuHost
 
@@ -36,6 +37,12 @@ class MenuFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        pagingAdapter = MenuAdapter { id ->
+            val direction = MenuFragmentDirections.actionMenuFragmentToPizzaModalSheet(id)
+            binding.root.findNavController().navigate(direction)
+        }
+        discountAdapter = DiscountAdapter()
 
         val menuDataAdapterModels = listOf(
             MenuDataAdapterModel(

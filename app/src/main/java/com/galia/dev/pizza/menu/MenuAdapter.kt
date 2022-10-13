@@ -2,27 +2,23 @@ package com.galia.dev.pizza.menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.galia.dev.pizza.api.models.Pizza
 import com.galia.dev.pizza.databinding.ListItemMenuBinding
 
-class MenuAdapter: PagingDataAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCallback) {
+class MenuAdapter(
+    val handlerClick: (id: Int) -> Unit
+): PagingDataAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCallback) {
 
     class MenuItemHolder(private val binding: ListItemMenuBinding): ViewHolder(binding.root) {
-        fun bind(pizza: Pizza) {
+        fun bind(pizza: Pizza, action: (id: Int) -> Unit) {
             binding.pizza = pizza
             binding.menuItem.setOnClickListener {
-                navigateToPizza(pizza)
+                action(pizza.id.toInt())
             }
             binding.executePendingBindings()
-        }
-
-        private fun navigateToPizza(pizza: Pizza) {
-            val direction = MenuFragmentDirections.actionMenuFragmentToPizzaModalSheet(pizza.id.toInt())
-            binding.root.findNavController().navigate(direction)
         }
     }
 
@@ -44,7 +40,9 @@ class MenuAdapter: PagingDataAdapter<Pizza, MenuAdapter.MenuItemHolder>(DiffCall
     override fun onBindViewHolder(holder: MenuItemHolder, position: Int) {
         val pizza = getItem(position)
         pizza?.let {
-            holder.bind(pizza)
+            holder.bind(pizza){ id ->
+                handlerClick(id)
+            }
         }
     }
 
