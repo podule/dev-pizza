@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/layout/fragment_pizza_dialog_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_pizza_dialog_dialog_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_discount.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/list_item_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/modal_sheet_pizza.xml" value="0.1" />
         <entry key="app/src/main/res/layout/parent_menu_recycler.xml" value="0.33" />
         <entry key="app/src/main/res/layout/test.xml" value="0.25052083333333336" />
