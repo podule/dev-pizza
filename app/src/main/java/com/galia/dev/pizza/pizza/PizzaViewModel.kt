@@ -1,9 +1,6 @@
 package com.galia.dev.pizza.pizza
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.galia.dev.pizza.api.models.Pizza
 import com.galia.dev.pizza.data.repositories.MenuRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PizzaViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    repository: MenuRepository
+    private val repository: MenuRepository
 ) : ViewModel() {
 
     private val pizzaId: Int = savedStateHandle.get<Int>(PIZZA_ID_SAVED_STATE_KEY)!!
@@ -24,6 +21,10 @@ class PizzaViewModel @Inject constructor(
 
     fun setLoad(flag: Boolean) {
         _isLoad.value = flag
+    }
+
+    suspend fun addToCart() {
+        repository.addPizzaToCart(pizzaId)
     }
 
     companion object {

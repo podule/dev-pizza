@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.galia.dev.pizza.R
 import com.galia.dev.pizza.databinding.ModalSheetPizzaBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
@@ -32,7 +32,6 @@ class PizzaModalSheet : BottomSheetDialogFragment() {
         binding.viewModel = viewModel
 
         lifecycleScope.launch {
-            delay(3000)
             viewModel.pizza
                 .catch { exception ->
                     viewModel.setLoad(false)
@@ -43,6 +42,15 @@ class PizzaModalSheet : BottomSheetDialogFragment() {
                     binding.pizza = it
                     viewModel.setLoad(false)
                 }
+        }
+
+        binding.pizzaToOrder.setOnClickListener {
+            viewModel.setLoad(true)
+            lifecycleScope.launch {
+                viewModel.addToCart()
+                Toast.makeText(activity, requireContext().resources.getText(R.string.add_to_cart), Toast.LENGTH_SHORT).show()
+                findNavController().navigateUp()
+            }
         }
 
         return binding.root

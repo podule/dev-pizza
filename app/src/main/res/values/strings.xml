@@ -8,4 +8,5 @@
     <string name="menu_discount">Акции и скидки</string>
     <string name="menu_cart">Корзина</string>
     <string name="menu_sort">Сортировать по цене</string>
+    <string name="add_to_cart">Добавлено в корзину</string>
 </resources>

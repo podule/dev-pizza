@@ -32,4 +32,8 @@ class FakeMenuRepository : MenuRepository {
         }
     }
 
+    override suspend fun addPizzaToCart(pizzaId: Int) {
+
+    }
+
 }

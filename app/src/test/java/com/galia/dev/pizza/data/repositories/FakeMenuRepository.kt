@@ -27,4 +27,8 @@ class FakeMenuRepository: MenuRepository {
             emit(menuPizza!![id])
         }
     }
+
+    override suspend fun addPizzaToCart(pizzaId: Int) {
+
+    }
 }
