@@ -1,6 +1,7 @@
 package com.galia.dev.pizza.data.repositories
 
 import androidx.paging.PagingData
+import com.galia.dev.pizza.OrderProto
 import com.galia.dev.pizza.api.models.Pizza
 import com.galia.dev.pizza.api.models.Discount
 import kotlinx.coroutines.flow.Flow
@@ -10,4 +11,5 @@ interface MenuRepository {
     fun getDiscounts(): Flow<List<Discount>>
     fun getPizza(id: Int): Flow<Pizza>
     suspend fun addPizzaToCart(pizzaId: Int)
+    fun getOrderProto(): Flow<OrderProto>
 }

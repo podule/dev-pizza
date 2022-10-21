@@ -1,6 +1,7 @@
 package com.galia.dev.pizza.data.repositories
 
 import androidx.paging.PagingData
+import com.galia.dev.pizza.OrderProto
 import com.galia.dev.pizza.api.models.Discount
 import com.galia.dev.pizza.api.models.Pizza
 import kotlinx.coroutines.flow.Flow
@@ -30,5 +31,9 @@ class FakeMenuRepository: MenuRepository {
 
     override suspend fun addPizzaToCart(pizzaId: Int) {
 
+    }
+
+    override fun getOrderProto(): Flow<OrderProto> {
+        return flow { emit( OrderProto.getDefaultInstance() ) }
     }
 }

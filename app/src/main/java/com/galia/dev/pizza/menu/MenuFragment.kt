@@ -14,13 +14,14 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.galia.dev.pizza.R
 import com.galia.dev.pizza.databinding.FragmentMenuBinding
+import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MenuFragment : Fragment() {
+class MenuFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
 
     private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
@@ -63,8 +64,29 @@ class MenuFragment : Fragment() {
         menuHost = requireActivity()
         addMenu()
         bindMenuData()
+        initBottomNavigation()
 
         return binding.root
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_menu -> { true }
+            R.id.menu_cart -> { true }
+            else -> false
+        }
+    }
+
+    private fun initBottomNavigation() {
+        binding.bottomNavigation.setOnItemSelectedListener(this)
+        lifecycleScope.launch {
+            viewModel.order.collect { orderProto ->
+                if (orderProto.id != 0) {
+                    val badge = binding.bottomNavigation.getOrCreateBadge(R.id.menu_cart)
+                    badge.isVisible = true
+                }
+            }
+        }
     }
 
     private fun addMenu() {

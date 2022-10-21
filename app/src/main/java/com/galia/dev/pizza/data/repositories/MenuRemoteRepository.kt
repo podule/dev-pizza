@@ -46,7 +46,7 @@ class MenuRemoteRepository @Inject constructor(
 
 
     override suspend fun addPizzaToCart(pizzaId: Int) {
-        var orderId = getOrderProtoId()
+        var orderId = getOrderProto().first().id
         if (orderId == 0) {
             val newOrder = getNewOrder().first()
             orderId = newOrder.id
@@ -63,7 +63,7 @@ class MenuRemoteRepository @Inject constructor(
         }
     }
 
-    private suspend fun getOrderProtoId() = dataStore.data.first().id
+    override fun getOrderProto() = dataStore.data
 
     private suspend fun setOrderProtoId(id: Int) {
         dataStore.updateData { order ->
