@@ -72,7 +72,11 @@ class MenuFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_menu -> { true }
-            R.id.menu_cart -> { true }
+            R.id.menu_cart -> {
+                val direction = MenuFragmentDirections.actionMenuFragmentToCartFragment()
+                binding.root.findNavController().navigate(direction)
+                true
+            }
             else -> false
         }
     }
