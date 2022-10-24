@@ -11,10 +11,11 @@
 - RecyclerView
 - Coil для загрузки и отображения изображений
 - Paging3 для порционной загрузки данных
+- Proto DataStore
 
 Скриншоты
 --------------
-<img src="Screenshot_20221023_183358.png" width="300"/>  <img src="Screenshot_20221023_183500.png" width="300"/>
+<img src="Screenshot_20221023_183358.png" width="300"/>   <img src="Screenshot_20221023_183500.png" width="300"/>
 
 Функции и способы их реализации
 --------------
