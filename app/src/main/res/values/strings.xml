@@ -9,4 +9,10 @@
     <string name="menu_cart">Корзина</string>
     <string name="menu_sort">Сортировать по цене</string>
     <string name="add_to_cart">Добавлено в корзину</string>
+    <string name="agree_cart">Оформить</string>
+    <string name="price_cart">%d ₽</string>
+    <string name="delivery">Доставка</string>
+    <string name="free">Бесплатно</string>
+    <string name="sum_order">Сумма заказа</string>
+    <string name="title_cart">Ваш заказ</string>
 </resources>
