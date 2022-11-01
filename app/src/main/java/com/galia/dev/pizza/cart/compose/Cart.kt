@@ -18,8 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.galia.dev.pizza.R
+import com.galia.dev.pizza.api.models.Pizza
 import com.galia.dev.pizza.cart.CartViewModel
-import com.galia.dev.pizza.cart.getStubOrderedPizza
 import com.google.android.material.composethemeadapter.MdcTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,26 +31,44 @@ fun CartScreen(
     Scaffold(
         topBar = { AppBar(onBackClick = onBackClick) }
     ) { innerPadding ->
-        LazyColumn(contentPadding = innerPadding) {
+        val flagCreatedOrder = cartViewModel.flagCreatedOrder
+
+        if (flagCreatedOrder) {
             val listOrder = cartViewModel.orderedPizza
-            item {
-                TextTitle()
+            if (listOrder.isEmpty()) {
+                Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
+                    LinearProgressIndicator()
+                }
+            } else {
+                LazyColumn(contentPadding = innerPadding) {
+
+                    item {
+                        TextTitle(stringResource(id = R.string.title_cart))
+                    }
+                    items(listOrder) { pizza ->
+                        OrderedPizza(pizza = pizza, modifier = Modifier.padding(horizontal = Dimens.PaddingSmall))
+                    }
+                    item {
+                        OrderInfo(sum = listOrder.fold(0) { r, t -> r + t.pizza.price })
+                    }
+                    item {
+                        BuyButton()
+                    }
+                }
             }
-            items(listOrder) { pizza ->
-                OrderedPizza(pizza = pizza)
-            }
-            item {
-                OrderInfo(listOrder.fold(0) { r, t -> r + t.pizza.price })
-            }
-            item {
-                BuyButton()
-            }
+        } else {
+            TextTitle(
+                text =  stringResource(id = R.string.empty_cart),
+                modifier = Modifier
+                    .padding(all = Dimens.PaddingNormal)
+                    .padding(innerPadding)
+            )
         }
     }
 }
 
 @Composable
-private fun TextTitle(modifier: Modifier = Modifier) {
+private fun TextTitle(text: String, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
@@ -58,7 +76,7 @@ private fun TextTitle(modifier: Modifier = Modifier) {
             .padding(vertical = Dimens.PaddingSmall)
     ) {
         Text(
-            text = stringResource(id = R.string.title_cart),
+            text = text,
             style = MaterialTheme.typography.h5
         )
     }
@@ -89,7 +107,7 @@ fun BuyButton(modifier: Modifier = Modifier) {
         onClick = { },
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal =  Dimens.PaddingSmall, vertical = Dimens.PaddingNormal)
+            .padding(horizontal = Dimens.PaddingSmall, vertical = Dimens.PaddingNormal)
     ) {
         Text(
             text = stringResource(id = R.string.agree_cart),
@@ -110,7 +128,7 @@ fun CartPreview() {
 
             LazyColumn(contentPadding = innerPadding) {
                 item {
-                    TextTitle()
+                    TextTitle(stringResource(id = R.string.title_cart))
                 }
                 items(getStubOrderedPizza().toMutableStateList()) { pizza ->
                     OrderedPizza(pizza = pizza)
@@ -125,3 +143,18 @@ fun CartPreview() {
         }
     }
 }
+
+fun getStubOrderedPizza() =
+    List(8) { i ->
+        com.galia.dev.pizza.api.models.OrderedPizza(
+            i,
+            Pizza(
+                i.toLong(),
+                "Пепперони",
+                "Средняя пицца на тонком тесте",
+                "test",
+                "test",
+                140
+            ), 1
+        )
+    }

@@ -1,9 +1,6 @@
 package com.galia.dev.pizza.api
 
-import com.galia.dev.pizza.api.models.Discount
-import com.galia.dev.pizza.api.models.MenuPizza
-import com.galia.dev.pizza.api.models.Order
-import com.galia.dev.pizza.api.models.Pizza
+import com.galia.dev.pizza.api.models.*
 
 class FakeApiService(): ApiService {
     var failureMsg: String? = null
@@ -31,11 +28,15 @@ class FakeApiService(): ApiService {
         return menuPizza!!.menu[id]
     }
 
-    override suspend fun addPizza(orderId: Int, pizzaId: Int): Int {
+    override suspend fun addPizzaToCart(orderId: Int, pizzaId: Int): Int {
         return 1
     }
 
     override suspend fun createOrder(): Order {
         return Order(1)
+    }
+
+    override suspend fun getOrderData(id: Int): OrderInfo {
+        return OrderInfo(1, emptyList())
     }
 }

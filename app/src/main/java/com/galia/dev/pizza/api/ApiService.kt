@@ -1,9 +1,6 @@
 package com.galia.dev.pizza.api
 
-import com.galia.dev.pizza.api.models.MenuPizza
-import com.galia.dev.pizza.api.models.Discount
-import com.galia.dev.pizza.api.models.Order
-import com.galia.dev.pizza.api.models.Pizza
+import com.galia.dev.pizza.api.models.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -26,10 +23,13 @@ interface ApiService {
     suspend fun getPizza(@Path("id") id: Int): Pizza
 
     @GET("order/add/{orderId}/{pizzaId}")
-    suspend fun addPizza(@Path("orderId") orderId: Int, @Path("pizzaId") pizzaId: Int): Int
+    suspend fun addPizzaToCart(@Path("orderId") orderId: Int, @Path("pizzaId") pizzaId: Int): Int
 
     @GET("order/create")
     suspend fun createOrder(): Order
+
+    @GET("order/{id}")
+    suspend fun getOrderData(@Path("id") id: Int): OrderInfo
 
 
     companion object {

@@ -15,4 +15,5 @@
     <string name="free">Бесплатно</string>
     <string name="sum_order">Сумма заказа</string>
     <string name="title_cart">Ваш заказ</string>
+    <string name="empty_cart">Пустая корзина</string>
 </resources>

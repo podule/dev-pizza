@@ -11,18 +11,18 @@ import androidx.compose.ui.unit.sp
 import com.google.android.material.composethemeadapter.MdcTheme
 
 @Composable
-fun OrderInfo(sum: Int) {
-    val modifier = Modifier.fillMaxWidth()
-    Column(modifier = modifier.padding(vertical = Dimens.PaddingNormal)) {
+fun OrderInfo(sum: Int, modifier: Modifier = Modifier) {
+    val localModifier = modifier.fillMaxWidth()
+    Column(modifier = localModifier.padding(vertical = Dimens.PaddingNormal)) {
         OrderInfoItem(
             stringResource(id = R.string.delivery),
             stringResource(id = R.string.free),
-            modifier
+            localModifier
         )
         OrderInfoItem(
             stringResource(id = R.string.sum_order),
             stringResource(id = R.string.price_cart, formatArgs = arrayOf(sum)),
-            modifier
+            localModifier
         )
     }
 }

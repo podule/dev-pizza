@@ -36,7 +36,7 @@ fun OrderedPizza(pizza: OrderedPizza, modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         ) {
 
-            PizzaImage(imageUrl = pizza.pizza.url, imageHeight = 100.dp)
+            PizzaImage(imageUrl = pizza.pizza.url, imageHeight = 70.dp)
             PizzaInfo(pizza = pizza, modifier = Modifier.fillMaxWidth())
         }
     }
@@ -133,7 +133,7 @@ fun OrderedPizzaPreview() {
     MdcTheme {
         OrderedPizza(
             pizza = OrderedPizza(
-                Pizza(
+                1, Pizza(
                     1L,
                     "Пепперони",
                     "Средняя пицца на тонком тесте",
